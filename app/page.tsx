@@ -1,8 +1,8 @@
-import Image from 'next/image'
-import Link from 'next/link'
 
 export default function Home() {
   return (
-    <h1 className='font-semibold'>Home</h1>
+    <main className="h-[3000px]">
+      <h1>Home</h1>
+    </main>
   )
 }
