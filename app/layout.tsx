@@ -5,6 +5,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 // components
 import Navigation from '@/components/navigation/Navigation'
+import Footer from '@/components/navigation/Footer'
 
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navigation />
         {children}
+        <Footer />
       </body>
     </html>
   )
