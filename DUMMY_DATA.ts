@@ -1,4 +1,3 @@
-
 import { Category, Post } from "./types/collection";
 
 export const DUMMY_POSTS: Post[] = [
@@ -25,7 +24,7 @@ export const DUMMY_POSTS: Post[] = [
     author: { id: "1", first_name: "John", last_name: "Doe" },
     slug: "the-vibrant-city-of-paris",
     image:
-      "https://images.unsplash.com/photo-1448906654166-444d494666b3?ixid=MnwzODU2NTF8MHwxfHNlYXJjaHwyNXx8bG9uZG9ufGVufDB8fHx8MTY3MDI3MzM3Ng&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1508050919630-b135583b29ab?ixid=MnwzODU2NTF8MHwxfHNlYXJjaHw5fHxwYXJpc3xlbnwwfHx8fDE2NzAyNzMzNDg&ixlib=rb-4.0.3",
     body: "Paris is known for its art, culture, and history. The city is home to many iconic landmarks such as the Eiffel Tower, the Louvre Museum, and the Notre-Dame Cathedral. It is also known for its fashion and gastronomy, with numerous world-renowned restaurants and luxury fashion houses. Paris is a global center for business, finance, and politics, and is considered one of the world's leading cities in these fields.",
     date_created: "2021-07-02T00:00:00.000Z",
     date_updated: "2021-07-02T00:00:00.000Z",
@@ -39,7 +38,7 @@ export const DUMMY_POSTS: Post[] = [
     author: { id: "1", first_name: "John", last_name: "Doe" },
     slug: "the-majestic-city-of-london",
     image:
-      "https://images.unsplash.com/photo-1508050919630-b135583b29ab?ixid=MnwzODU2NTF8MHwxfHNlYXJjaHw5fHxwYXJpc3xlbnwwfHx8fDE2NzAyNzMzNDg&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1448906654166-444d494666b3?ixid=MnwzODU2NTF8MHwxfHNlYXJjaHwyNXx8bG9uZG9ufGVufDB8fHx8MTY3MDI3MzM3Ng&ixlib=rb-4.0.3",
     body: "London is a global city and one of the world's leading financial, cultural, and political centers. It is known for its history, museums, and iconic landmarks such as the Tower of London, Buckingham Palace, and the London Eye. The city is also home to many prestigious universities, theaters, and sports teams.",
     date_created: "2021-07-03T00:00:00.000Z",
     date_updated: "2021-07-03T00:00:00.000Z",
