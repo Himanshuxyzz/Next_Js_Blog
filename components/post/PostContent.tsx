@@ -11,7 +11,7 @@ const PostContent = ({ post }: PostContentProps) => {
     return (
         <div className='space-y-2'>
             {/* {TAGS} */}
-            <div className='text-sm flex gap-2 items-center text-neutral-400'>
+            <div className='text-xs @md:text-sm flex gap-2 items-center text-neutral-400'>
                 <div className={
                     `font-medium ${post.category.title === 'Cities' ? 'text-emerald-600' : 'text-indigo-600'}`}>
                     {post.category.title}
