@@ -1,5 +1,8 @@
-import { DUMMY_POSTS } from '@/DUMMY_DATA';
-import React from 'react'
+import { DUMMY_POSTS, ERRORMSG } from '@/DUMMY_DATA';
+// import React from 'react'
+// import { notFound } from "next/navigation"
+import Error404 from '@/components/404/Error404';
+import PaddingContainer from '@/components/layout/PaddingContainer';
 
 export const generateStaticParams = async () => {
     return DUMMY_POSTS.map((post) => {
@@ -15,8 +18,13 @@ const page = ({ params, }: {
     }
 }) => {
     const post = DUMMY_POSTS.find((post) => post.slug === params.slug)
+
     return (
-        <div>{post?.title}</div>
+        <PaddingContainer>
+            {!post ?
+                (<Error404 message={ERRORMSG[0]} />)
+                : (<div>{post?.title}</div>)}
+        </PaddingContainer>
     )
 }
 

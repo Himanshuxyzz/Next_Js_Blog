@@ -1,4 +1,8 @@
-import { Category, Post } from "./types/collection";
+import { Category, ErrMsg, Post } from "./types/collection";
+
+export const ERRORMSG: ErrMsg = [
+  "Know your place, buddy It's not what you're looking for go back, now!",
+];
 
 export const DUMMY_POSTS: Post[] = [
   {

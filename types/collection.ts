@@ -1,3 +1,5 @@
+export type ErrMsg = string[];
+
 export interface Post {
   id: string;
   title: string;
