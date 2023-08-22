@@ -5,6 +5,10 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {},
+  theme: {
+    fontSize: {
+      xxs: ["10px", "12px"],
+    },
+  },
   plugins: [require("@tailwindcss/container-queries")],
 };
