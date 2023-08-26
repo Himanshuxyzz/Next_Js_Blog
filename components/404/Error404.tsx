@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-const Error404 = ({ message }: {
+const Error404 = ({ message = "" }: {
   message: string;
 }) => {
   return (

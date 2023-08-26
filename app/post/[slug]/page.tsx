@@ -7,21 +7,70 @@ import SociaLink from '@/components/elements/SociaLink';
 import PaddingContainer from '@/components/layout/PaddingContainer';
 import PostBody from '@/components/post/PostBody';
 import PostHero from '@/components/post/PostHero';
+import DirectusClient from '@/lib/directus';
+import { readItems } from '@directus/sdk';
+import { error } from 'console';
 
 export const generateStaticParams = async () => {
-    return DUMMY_POSTS.map((post) => {
-        return {
-            slug: post.slug
-        }
-    })
+    // return DUMMY_POSTS.map((post) => {
+    //     return {
+    //         slug: post.slug
+    //     }
+    // })
+    try {
+        const posts = await DirectusClient.request(readItems("post", {
+            filter: {
+                status: {
+                    _eq: "published",
+                },
+            },
+            fields: ["slug"],
+        }))
+
+        const params = posts?.map((post) => {
+            return {
+                slug: post.slug as string
+            }
+        })
+        return params || []
+    } catch (err) {
+        console.log(error)
+        throw new Error("Error fetching posts");
+    }
+
 }
 
-const page = ({ params, }: {
+const page = async ({ params, }: {
     params: {
         slug: string;
     }
 }) => {
-    const post = DUMMY_POSTS.find((post) => post.slug === params.slug)
+    // const post = DUMMY_POSTS.find((post) => post.slug === params.slug)
+
+    const getPostData = async () => {
+        try {
+            const post = await DirectusClient.request(readItems("post", {
+                filter: {
+                    slug: {
+                        _eq: params.slug,
+                    },
+                },
+                fields: ["*", "category.id", "category.title", "author.id", "author.first_name", "author.last_name"]
+            }))
+
+            return post?.[0];
+        } catch (error) {
+            console.log(error)
+            throw new Error("Error fetching posts");
+        }
+    }
+
+    const post = await getPostData()
+    console.log(post)
+
+    if (!post) {
+        return <Error404 message='Error fetching posts' />
+    }
 
     return (
         <PaddingContainer>

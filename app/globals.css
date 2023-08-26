@@ -2,7 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+
+@layer utilities {
+  .rich-text h2 {
+    @apply font-semibold text-neutral-900 mt-3 mb-3;
+  }
+
+  .rich-text h3 {
+    @apply font-semibold text-neutral-900 mb-3;
+  }
+
+  .rich-text p {
+    @apply mb-3 leading-snug text-neutral-700 text-left sm:text-justify;
+  }
+}
+
+.rich-text h2 {
+  /* text-3xl */
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.rich-text h3 {
+  /* text-2xl */
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
