@@ -66,7 +66,7 @@ const page = async ({ params, }: {
     }
 
     const post = await getPostData()
-    console.log(post)
+    // console.log(post)
 
     if (!post) {
         return <Error404 message='Error fetching posts' />
