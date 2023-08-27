@@ -3,6 +3,7 @@ import CTAcard from "@/components/elements/CTAcard";
 import PaddingContainer from "@/components/layout/PaddingContainer";
 import PostCard from "@/components/post/PostCard";
 import PostList from "@/components/post/PostList";
+
 import { DUMMY_POSTS } from "@/DUMMY_DATA";
 import DirectusClient from "@/lib/directus";
 import { Post } from "@/types/collection";
