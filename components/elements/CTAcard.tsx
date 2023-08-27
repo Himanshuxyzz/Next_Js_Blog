@@ -1,5 +1,5 @@
 import DirectusClient from '@/lib/directus'
-import { readItems } from '@directus/sdk'
+import { createItem, createItems, readItems } from '@directus/sdk'
 import Image from 'next/image'
 import React from 'react'
 
@@ -9,15 +9,13 @@ const CTAcard = async () => {
     'use server'
     try {
       const email = formData.get("email");
-      await DirectusClient.request(readItems("subscribers"))
+      await DirectusClient.request(createItem("subscribers", {
+        email,
+      }))
     } catch (error) {
 
     }
   }
-
-
-
-
 
   return (
     <div className='rounded-md bg-slate-100 py-10 px-6 relative overflow-hidden'>
