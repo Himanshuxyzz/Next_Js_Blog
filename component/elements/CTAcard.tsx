@@ -56,4 +56,4 @@ const CTAcard = async () => {
   )
 }
 
-export default CTAcard
+export default CTAcard;
