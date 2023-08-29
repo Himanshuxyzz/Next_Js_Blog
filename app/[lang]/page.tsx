@@ -10,8 +10,12 @@ import { Post } from "@/types/collection";
 import { readItems } from "@directus/sdk/rest";
 import { notFound } from "next/navigation"
 
-export default async function Home() {
-
+export default async function Home({ params }: {
+  params: {
+    lang: string;
+  }
+}) {
+  console.log(params)
   const getAllPosts = async () => {
     try {
       const posts = await DirectusClient.request(readItems("post", {

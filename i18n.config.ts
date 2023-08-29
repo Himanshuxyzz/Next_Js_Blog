@@ -5,5 +5,6 @@ interface I18nConfig {
 
 export const i18n = {
   defaultLocale: "en",
-  locales: ["end", "de"],
+  locales: ["en", "de"], 
 };
+
