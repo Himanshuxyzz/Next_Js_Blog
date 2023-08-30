@@ -1,9 +1,15 @@
 import DirectusClient from '@/lib/directus'
+import { getDictionary } from '@/lib/getDictionary'
 import { createItem } from '@directus/sdk'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import Image from 'next/image'
+import next from 'next/types'
 import React from 'react'
 
-const CTAcard = async () => {
+const CTAcard = async ({ locale }: {
+  locale: string;
+}) => {
+  const dictionary = await getDictionary(locale);
 
   const formAction = async (formData: FormData) => {
     'use server'
@@ -12,12 +18,19 @@ const CTAcard = async () => {
       await DirectusClient.request(createItem("subscribers", {
         email,
       }))
+      revalidateTag("subscribers-count")
     } catch (error) {
       console.log(error)
     }
   }
 
-  const subscribersCount = await fetch(`${process.env.NEXT_PUBLIC_API_URL}items/subscribers?meta=total_count&access_token=${process.env.ADMIN_TOKEN}`).then((res) => res.json()).then((res) => res.meta.total_count).catch((error) => console.log(error))
+  const subscribersCount = await fetch(`${process.env.NEXT_PUBLIC_API_URL}items/subscribers?meta=total_count&access_token=${process.env.ADMIN_TOKEN}`, {
+    next: {
+      tags: ["subscribers-count"],
+    },
+    cache: 'no-store',
+
+  }).then((res) => res.json()).then((res) => res.meta.total_count).catch((error) => console.log(error))
 
   // console.log(subscribersCount)
 
@@ -31,20 +44,20 @@ const CTAcard = async () => {
       {/* container */}
       <div className='relative z-10'>
         <div className='font-medium text-lg'>#exploretheworld</div>
-        <h3 className='text-4xl font-semibold mt-3'>Explore the world with me!</h3>
-        <p className='mt-2 text-lg max-w-lg'>Explore the world with me ! I'm travelling around the 🌍. I've visited most of the great cities of 🇮🇳 and currently I'm travelling in 🇰🇷 Join me! </p>
+        <h3 className='text-4xl font-semibold mt-3'>{dictionary.ctaCard.title}</h3>
+        <p className='mt-2 text-lg max-w-lg'>{dictionary.ctaCard.description}</p>
         {/* form */}
-        <form action={formAction} className='mt-6 flex items-center gap-2 w-full'>
-          <input placeholder='Write your email' className='bg-white/80 text-base rounded-md py-2 px-3 outline-none focus:ring-2 ring-neutral-600 placeholder:text-sm w-full md:w-auto' name='email' type='email' />
-          <button className='bg-neutral-900 rounded-md py-2 px-3 text-neutral-200 whitespace-nowrap'>Sign up</button>
+        <form key={subscribersCount + "subscribers-form"} action={formAction} className='mt-6 flex items-center gap-2 w-full'>
+          <input placeholder={dictionary.ctaCard.placeholder} className='bg-white/80 text-base rounded-md py-2 px-3 outline-none focus:ring-2 ring-neutral-600 placeholder:text-sm w-full md:w-auto' name='email' type='email' />
+          <button className='bg-neutral-900 rounded-md py-2 px-3 text-neutral-200 whitespace-nowrap'>{dictionary.ctaCard.button}</button>
         </form>
         {/* subscriber count */}
         <div className='mt-5 text-neutral-700'>
-          Join our  <span className='bg-neutral-700 px-2 py-1 text-neutral-100 rounded-md text-sm'>{subscribersCount}</span> subscribers now!
+          {dictionary.ctaCard.subscriberText1} {" "}  <span className='bg-neutral-700 px-2 py-1 text-neutral-100 rounded-md text-sm'>{subscribersCount}</span> {dictionary.ctaCard.subscriberText2}
         </div>
       </div>
     </div>
   )
 }
 
-export default CTAcard
+export default CTAcard;

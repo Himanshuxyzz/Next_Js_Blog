@@ -1,0 +1,25 @@
+{
+  "navigation": {
+    "links": {
+      "cities": "Städte",
+      "experience": "Erfahrungen"
+    }
+  },
+  "buttons": {
+    "readMore": "Weiterlesen"
+  },
+  "ctaCard": {
+    "title": "Erkunde die Welt mit mir!",
+    "description": "Erkunde die Welt mit mir! Ich reise um die 🌍. Ich habe die meisten großen Städte von 🇮🇳 besucht und momentan reise ich in 🇰🇷. Begleite mich!",
+    "button": "Registrieren",
+    "placeholder": "Schreibe deine E-Mail.",
+    "subscriberText1": "Werde jetzt unser",
+    "subscriberText2": "Abonnent!"
+  },
+  "footer": {
+    "description": "Willkommen auf meinem minimalistischen und Reiseblog, wo ich meine Reiseerlebnisse teile.",
+    "rightsText": "Alle Rechte vorbehalten | Urheberrecht",
+    "creatorText": "Erstellt mit ❤️ von",
+    "currentlyAtText": "Momentan in"
+  }
+}

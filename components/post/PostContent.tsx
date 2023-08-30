@@ -8,7 +8,7 @@ interface PostContentProps {
     isPostPage?: boolean;
 }
 
-const PostContent = ({ post, isPostPage = false }: PostContentProps) => {
+const PostContent = ({ post, isPostPage = false, locale }: PostContentProps) => {
     return (
         <div className='space-y-2'>
             {/* {TAGS} */}

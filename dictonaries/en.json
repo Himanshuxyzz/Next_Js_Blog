@@ -1,0 +1,25 @@
+{
+  "navigation": {
+    "links": {
+      "cities": "Cities",
+      "experience": "Experiences"
+    }
+  },
+  "buttons": {
+    "readMore": "Read More"
+  },
+  "ctaCard": {
+    "title": "Explore the world with me!",
+    "description": "Explore the world with me ! I'm travelling around the 🌍. I've visited most of the great cities of 🇮🇳 and currently I'm travelling in 🇰🇷 Join me!",
+    "button": "Sign Up",
+    "placeholder": "Write your email.",
+    "subscriberText1": "Join our",
+    "subscriberText2": "subscribers now!"
+  },
+  "footer": {
+    "description": "Welcome to my minimal and travel blog, where i share my journey to explore the places.",
+    "rightsText": "All rights are reserved | Copyright",
+    "creatorText": "Created with ❤️ by",
+    "currentlyAtText": "Currently at"
+  }
+}

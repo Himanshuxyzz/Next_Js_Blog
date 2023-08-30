@@ -15,7 +15,8 @@ export default async function Home({ params }: {
     lang: string;
   }
 }) {
-  console.log(params)
+  // console.log(params)
+  const locale = params.lang
   const getAllPosts = async () => {
     try {
       const posts = await DirectusClient.request(readItems("post", {
@@ -44,10 +45,10 @@ export default async function Home({ params }: {
   return (
     <PaddingContainer>
       <main className="h-auto space-y-10">
-        <PostCard post={posts[0]} />
+        <PostCard post={posts[0]} locale={locale} />
         <PostList posts={posts.filter((_post: any, index: any) => index > 0 && index < 3)} />
-        <CTAcard />
-        <PostCard post={posts[3]} reverse={true} />
+        <CTAcard locale={locale} />
+        <PostCard post={posts[3]} reverse={true} locale={locale} />
         <PostList posts={posts.filter((_post: any, index: any) => index > 3 && index < 6)} />
       </main>
     </PaddingContainer>

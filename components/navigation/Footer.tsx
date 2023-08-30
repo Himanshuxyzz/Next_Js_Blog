@@ -4,13 +4,19 @@ import siteConfig from '@/config/siteConfig'
 import Link from 'next/link'
 import SociaLink from '../elements/SociaLink'
 
-const Footer = () => {
+import { getDictionary } from "@/lib/getDictionary";
+
+
+const Footer = async ({ locale }: {
+    locale: string
+}) => {
+    const dictionary = await getDictionary(locale);
     return (
         <div className='py-8 mt-10 border-t'>
             <PaddingContainer>
                 <div>
                     <h2 className='text-3xl font-bold'>{siteConfig.siteName}</h2>
-                    <p className='max-w-md mt-2 text-neutral-700'>{siteConfig.description}</p>
+                    <p className='max-w-md mt-2 text-neutral-700'>{dictionary.footer.description}</p>
                 </div>
                 {/* social and currently at */}
                 <div className='mt-6 flex flex-wrap justify-between gap-4 '>
@@ -25,7 +31,7 @@ const Footer = () => {
                     </div>
                     <div>
                         <div className='text-sm text-neutral-400'>
-                            Currently At
+                            {dictionary.footer.currentlyAtText}
                         </div>
                         <div className='bg-white shadow-md rounded-md py-2 px-3 flex items-center gap-2'>
                             <div className='w-2 h-2 rounded-full bg-emerald-400' />
@@ -35,9 +41,10 @@ const Footer = () => {
                 {/* bottom section */}
                 <div className='border-t py-3 flex justify-between gap-4 flex-wrap mt-16'>
                     <div className='text-sm text-neutral-400'>
-                        All rights are reserved | Copyright {new Date().getFullYear()}
+                        {dictionary.footer.rightsText} {" "}
+                        {new Date().getFullYear()}
                     </div>
-                    <div className='font-semibold'>Made with love by <Link className='underline underline-offset-4' href={siteConfig.socialLinks.github}>@Himanshuxyzz</Link> ❤️</div>
+                    <div className='font-semibold'>{dictionary.footer.creatorText} <Link className='underline underline-offset-4' href={siteConfig.socialLinks.github}>@Himanshuxyzz</Link> ❤️</div>
                 </div>
             </PaddingContainer>
         </div>
