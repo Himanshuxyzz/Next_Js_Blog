@@ -20,10 +20,29 @@ export default async function Home({ params }: {
   const getAllPosts = async () => {
     try {
       const posts = await DirectusClient.request(readItems("post", {
-        fields: ["*", "author.id", "author.first_name", "author.last_name", "category.id", "category.title"],
+        fields: ["*", "author.id", "author.first_name", "author.last_name", "category.id", "category.title", "category.translations.*", "translations.*"],
       }));
 
-      return posts as any;
+      // return posts as any;
+
+      if (locale === "en") {
+        return posts
+      } else {
+        const localisedPosts = posts?.map((post) => {
+          return {
+            ...post,
+            title: post?.translations[0]?.title,
+            description: post?.translations[0]?.description,
+            body: post?.translations[0]?.body,
+            category: {
+              ...post.category,
+              title: post.category.translations[0].title,
+            }
+          }
+        })
+
+        return localisedPosts
+      }
     }
     catch (err) {
       console.log(err)
@@ -33,7 +52,7 @@ export default async function Home({ params }: {
 
   const posts = await getAllPosts()
 
-  // console.log(posts)
+  console.log(posts)
 
   if (!posts) {
     return <Error404 message="Error fetching posts" />
