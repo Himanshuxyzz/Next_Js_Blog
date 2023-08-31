@@ -40,11 +40,14 @@ export const generateStaticParams = async () => {
 const page = async ({ params }: {
     params: {
         category: string;
+        lang: string;
     }
 }) => {
     // const posts = DUMMY_POSTS.filter((post) => post.category.title.toLocaleLowerCase() === params.category)
 
     // const category = DUMMY_CATEGORIES.find((category) => category.slug === params.category)
+
+    const locale = params.lang
 
     const getCategoryData = async () => {
         try {
@@ -85,7 +88,7 @@ const page = async ({ params }: {
                 <h1 className='text-4xl font-semibold'>{typeCorrectedCategory?.title}</h1>
                 <p className='text-lg text-neutral-600'>{typeCorrectedCategory?.description}</p>
             </div>
-            <PostList posts={typeCorrectedCategory?.posts} />
+            <PostList posts={typeCorrectedCategory?.posts} locale={locale} />
         </PaddingContainer >
     )
 }

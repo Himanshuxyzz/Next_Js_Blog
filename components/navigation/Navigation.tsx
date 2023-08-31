@@ -15,7 +15,7 @@ const Navigation = async ({ locale }: {
             <PaddingContainer>
                 <div className="py-5 flex items-center justify-between">
                     {/* Logo */}
-                    <Link className="font-bold text-lg" href="/">Explorer</Link>
+                    <Link className="font-bold text-lg" href={`/${locale}`}>Explorer</Link>
                     {/* Nav_items */}
                     <nav>
                         <ul className="flex items-center gap-4 text-neutral-600 font-semibold">

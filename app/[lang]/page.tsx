@@ -46,10 +46,10 @@ export default async function Home({ params }: {
     <PaddingContainer>
       <main className="h-auto space-y-10">
         <PostCard post={posts[0]} locale={locale} />
-        <PostList posts={posts.filter((_post: any, index: any) => index > 0 && index < 3)} />
+        <PostList posts={posts.filter((_post: any, index: any) => index > 0 && index < 3)} locale={locale} />
         <CTAcard locale={locale} />
         <PostCard post={posts[3]} reverse={true} locale={locale} />
-        <PostList posts={posts.filter((_post: any, index: any) => index > 3 && index < 6)} />
+        <PostList posts={posts.filter((_post: any, index: any) => index > 3 && index < 6)} locale={locale} />
       </main>
     </PaddingContainer>
 

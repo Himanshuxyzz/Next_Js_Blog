@@ -15,7 +15,7 @@ const PostCard = ({ post, layout = "horizontal", reverse = false, locale }: Post
     // const dictionary = await getDictionary(locale);
     // console.log(post)
     return (
-        <Link className={`@container ${layout == 'horizontal' ? "grid md:grid-cols-2 grid-cols-1 items-center gap-10" : "space-y-10"}`} href={`/post/${post.slug}`}>
+        <Link className={`@container ${layout == 'horizontal' ? "grid md:grid-cols-2 grid-cols-1 items-center gap-10" : "space-y-10"}`} href={`/${locale}/post/${post.slug}`}>
             {/* {post image} */}
             <Image className={`rounded-md w-full object-cover max-h-[300px] h-full ${reverse ? "md:order-last" : " "}`} alt={post.title} src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${post.image}?key=optimised`} width={600} height={300} priority />
             {/* post content */}

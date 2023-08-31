@@ -43,9 +43,12 @@ export const generateStaticParams = async () => {
 const page = async ({ params, }: {
     params: {
         slug: string;
+        lang: string;
     }
 }) => {
     // const post = DUMMY_POSTS.find((post) => post.slug === params.slug)
+
+    const locale = params.lang
 
     const getPostData = async () => {
         try {
@@ -81,7 +84,7 @@ const page = async ({ params, }: {
                     : (
                         <>
                             {/* post hero and social share */}
-                            <PostHero post={post} />
+                            <PostHero post={post} locale={locale} />
                             <div className='flex gap-10 flex-col md:flex-row'>
                                 <div className='relative'>
                                     <div className='flex md:flex-col gap-5 sticky top-20 items-center'>
@@ -100,7 +103,7 @@ const page = async ({ params, }: {
                                 <PostBody body={post.body} />
                             </div>
                         </>)}
-                <CTAcard />
+                <CTAcard locale={locale} />
             </div>
         </PaddingContainer>
     )
