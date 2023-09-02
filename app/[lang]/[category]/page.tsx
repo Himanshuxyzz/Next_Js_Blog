@@ -26,11 +26,21 @@ export const generateStaticParams = async () => {
 
         const params = categories?.map((category) => {
             return {
-                category: category.slug as string
+                category: category.slug as string,
+                lang: "en",
             }
-        })
+        });
 
-        return params || []
+        const localisedParams = categories?.map((category) => {
+            return {
+                category: category.slug as string,
+                lang: "de"
+            }
+        });
+
+        const allParams = [...params, ...localisedParams]
+
+        return allParams || []
     } catch (error) {
         console.log(error)
         throw new Error("Error fetching categories");
