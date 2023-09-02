@@ -11,7 +11,8 @@ interface PostContentProps {
 }
 
 const PostContent = async ({ post, isPostPage = false, locale }: PostContentProps) => {
-    const dictionary = await getDictionary(locale);
+    console.log(locale)
+    // const dictionary = await getDictionary(locale);
     return (
         <div className='space-y-2'>
             {/* {TAGS} */}
@@ -23,9 +24,9 @@ const PostContent = async ({ post, isPostPage = false, locale }: PostContentProp
                 <div className='w-2 h-2 rounded-full bg-neutral-200' />
                 <div >{`${post.author.first_name} ${post.author.last_name}`}</div>
                 <div className='w-2 h-2 rounded-full bg-neutral-200'></div>
-                <div>{getReadingTime(post.body,locale)}</div>
+                <div>{getReadingTime(post.body, locale)}</div>
                 <div className='w-2 h-2 rounded-full bg-neutral-200'></div>
-                <div>{getRelativeDate(post.date_created,locale)}</div>
+                <div>{getRelativeDate(post.date_created, locale)}</div>
             </div>
             {/* title  */}
             <h2 className={`${isPostPage ? "lg:text-4xl text-2xl md:text-3xl font-bold" : "@lg:text-3xl text-xl @md:text-2xl font-medium"}`}>{post.title}</h2>
@@ -33,7 +34,7 @@ const PostContent = async ({ post, isPostPage = false, locale }: PostContentProp
             <p className='text-base @lg:text-lg text-neutral-600 leading-snug'>{post.description}</p>
             {/* read more */}
             {/* {isPostPage ? "" : (<div className='flex items-center gap-2 pt-3'>Read More <ArrowRight size={14} /></div>)} */}
-            {!isPostPage && (<div className='flex items-center gap-2 pt-3'>{dictionary.buttons.readMore} <ArrowRight size={14} /></div>)}
+            {!isPostPage && (<div className='flex items-center gap-2 pt-3'>{ } <ArrowRight size={14} /></div>)}
         </div >
     )
 }

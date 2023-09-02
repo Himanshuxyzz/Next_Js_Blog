@@ -29,10 +29,20 @@ export const generateStaticParams = async () => {
 
         const params = posts?.map((post) => {
             return {
-                slug: post.slug as string
+                slug: post.slug as string,
+                lang: "en",
             }
         })
-        return params || []
+
+        const localisedParams = posts?.map((post) => {
+            return {
+                slug: post.slug as string,
+                lang: "de",
+            }
+        })
+
+        const allParams = params?.concat(localisedParams ?? []);
+        return allParams || []
     } catch (err) {
         console.log(error)
         throw new Error("Error fetching posts");
@@ -58,10 +68,31 @@ const page = async ({ params, }: {
                         _eq: params.slug,
                     },
                 },
-                fields: ["*", "category.id", "category.title", "author.id", "author.first_name", "author.last_name"]
+                fields: ["*", "category.id", "category.title", "author.id", "author.first_name", "author.last_name", "translations.*", "category.translations.*"]
             }))
 
-            return post?.[0];
+            const postData = post?.[0]
+
+            if (locale === "en") {
+                return postData;
+            } else {
+                const localisedPostData = {
+                    ...postData,
+                    title: postData?.translations?.[0]?.title,
+                    description: postData?.translations?.[0]?.description,
+                    body: postData?.translations?.[0]?.body,
+                    slug: postData?.slug,
+                    category: {
+                        ...postData?.category,
+                        title: postData?.category?.translations?.[0]?.title,
+                    }
+                }
+                // console.log(postData)
+                return localisedPostData
+
+            }
+
+            // return post?.[0];
         } catch (error) {
             console.log(error)
             throw new Error("Error fetching posts");

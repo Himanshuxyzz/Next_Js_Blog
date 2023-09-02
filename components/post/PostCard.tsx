@@ -13,7 +13,7 @@ interface PostProps {
 
 const PostCard = ({ post, layout = "horizontal", reverse = false, locale }: PostProps) => {
     // const dictionary = await getDictionary(locale);
-    // console.log(post)
+    console.log(locale)
     return (
         <Link className={`@container ${layout == 'horizontal' ? "grid md:grid-cols-2 grid-cols-1 items-center gap-10" : "space-y-10"}`} href={`/${locale}/post/${post.slug}`}>
             {/* {post image} */}

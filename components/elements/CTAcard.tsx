@@ -9,7 +9,10 @@ import React from 'react'
 const CTAcard = async ({ locale }: {
   locale: string;
 }) => {
+  // console.log(locale)
   const dictionary = await getDictionary(locale);
+
+  // console.log(dictionary)
 
   const formAction = async (formData: FormData) => {
     'use server'

@@ -38,7 +38,8 @@ export const generateStaticParams = async () => {
             }
         });
 
-        const allParams = [...params, ...localisedParams]
+        // const allParams = [...params, ...localisedParams]
+        const allParams = params.concat(localisedParams ?? [])
 
         return allParams || []
     } catch (error) {

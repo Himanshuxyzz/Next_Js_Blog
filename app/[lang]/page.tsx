@@ -52,7 +52,7 @@ export default async function Home({ params }: {
 
   const posts = await getAllPosts()
 
-  console.log(posts) 
+  // console.log(posts) 
 
   if (!posts) {
     return <Error404 message="Error fetching posts" />
