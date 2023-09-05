@@ -22,7 +22,10 @@ const LangSwitcher = ({ locale }: {
 
     return (
         // <Link href={locale === "en" ? "/de" : "/en"}>{targetLanguage.toUpperCase()}</Link >
-        <Link href={redirectTarget()} locale={targetLanguage}>{targetLanguage.toUpperCase()}</Link >
+        <Link className='font-semibold flex gap-1 items-center' href={redirectTarget()} locale={targetLanguage}>
+            <span>{targetLanguage === "en" ? "🇺🇸" : "🇩🇪"}</span>
+            {targetLanguage.toUpperCase()}
+        </Link >
 
 
     )

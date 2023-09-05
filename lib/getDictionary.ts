@@ -7,6 +7,6 @@ export const getDictionary = async (locale: string) => {
   if (!locale || locale === undefined) {
     return dictionaries["en"]() as any;
   } else {
-    return dictionaries[locale as "en" | "de"]();
+    return dictionaries[locale as "en" | "de"]() as any;
   }
 };
