@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 import Navigation from '@/components/navigation/Navigation'
 import Footer from '@/components/navigation/Footer'
 import { getDictionary } from '@/lib/getDictionary'
+import siteConfig from '@/config/siteConfig'
 
 
 // export const metadata: Metadata = {
@@ -21,13 +22,16 @@ export const generateMetadata = async ({ params: {
 } }: {
   params: {
     lang: string;
-  } 
+  }
 }) => {
   // get the dictionary
   const dictionary = await getDictionary(lang)
 
   return {
-    title: 'Explorer',
+    title: {
+      template: "%s | " + siteConfig.siteName,
+      default: siteConfig.siteName,
+    },
     description: dictionary.footer.description,
   }
 }
