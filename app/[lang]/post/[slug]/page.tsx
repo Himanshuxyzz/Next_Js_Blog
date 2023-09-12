@@ -71,7 +71,7 @@ export const generateMetadata = async ({
         openGraph: {
             title: post?.title,
             description: post?.description,
-            url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/${slug}`,
+            url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/post/${slug}`,
             siteName: post?.title,
             images: [
                 {
@@ -82,6 +82,13 @@ export const generateMetadata = async ({
             ],
             locale: lang,
             type: "website",
+        },
+        alternates: {
+            canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/post/${slug}`,
+            languages: {
+                "en-US": `${process.env.NEXT_PUBLIC_SITE_URL}/en/post/${slug}`,
+                "de-DE": `${process.env.NEXT_PUBLIC_SITE_URL}/de/post/${slug}`,
+            },
         },
     }
 }
