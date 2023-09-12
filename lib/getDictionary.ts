@@ -5,6 +5,7 @@ const dictionaries: any = {
 
 export const getDictionary = async (locale: string) => {
   if (!locale || locale === undefined) {
+    // @ts-ignore
     return dictionaries["en"]() as any;
   } else {
     return dictionaries[locale as "en" | "de"]() as any;
