@@ -67,13 +67,13 @@ export const generateMetadata = async ({ params: { category, lang } }: {
             description: categoryData?.description,
             url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/${category}`,
             siteName: categoryData?.title,
-            images: [
-                {
-                    url: "https://localhost:3000/opengraph-image.png",
-                    width: 1200,
-                    height: 628,
-                },
-            ],
+            // images: [
+            //     {
+            //         url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/post/${category}/opengraph-image.png`,
+            //         width: 1200,
+            //         height: 628,
+            //     },
+            // ],
             locale: lang,
             type: "website",
         },
@@ -90,7 +90,7 @@ export const generateMetadata = async ({ params: { category, lang } }: {
 
 
 // get category data
-const getCategoryData = cache(async (categorySlug: string, locale: string) => {
+export const getCategoryData = cache(async (categorySlug: string, locale: string) => {
     try {
         const category = await DirectusClient.request(readItems("category", {
             filter: {

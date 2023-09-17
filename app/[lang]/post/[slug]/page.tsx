@@ -7,12 +7,13 @@ import SociaLink from '@/components/elements/SociaLink';
 import PaddingContainer from '@/components/layout/PaddingContainer';
 import PostBody from '@/components/post/PostBody';
 import PostHero from '@/components/post/PostHero';
+import siteConfig from '@/config/siteConfig';
 import DirectusClient from '@/lib/directus';
 import { readItems } from '@directus/sdk';
 import { error } from 'console';
 import { cache } from 'react';
 
-const getPostData = cache(async (postSlug: string, locale: string) => {
+export const getPostData = cache(async (postSlug: string, locale: string) => {
     try {
         const post = await DirectusClient.request(readItems("post", {
             filter: {
@@ -73,13 +74,13 @@ export const generateMetadata = async ({
             description: post?.description,
             url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/post/${slug}`,
             siteName: post?.title,
-            images: [
-                {
-                    url: "https://localhost:3000/opengraph-image.png",
-                    width: 1200,
-                    height: 628,
-                },
-            ],
+            // images: [
+            //     {
+            //         url: `${process.env.NEXT_PUBLIC_SITE_URL}/${lang}/post/${slug}/opengraph-image.png`,
+            //         width: 1200,
+            //         height: 628,
+            //     },
+            // ],
             locale: lang,
             type: "website",
         },
@@ -149,12 +150,38 @@ const page = async ({ params, }: {
     const post = await getPostData(postSlug, locale)
     // console.log(post)
 
+    // structured data format for google
+
+    const jsonLd =
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post.title,
+        "image": `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/post/${postSlug}/opengraph-image.png`,
+        "author": post.body?.first_name + " " + post.body?.last_name,
+        "genre": post.category.title,
+        "publisher": siteConfig.siteName,
+        "url": `${process.env.NEXT_PUBLIC_SITE_URL}/post/${postSlug}`,
+        // "datePublished": new Date(post.description?.date_created).toISOString(),
+        // "dateCreated": new Date(post.body?.date_created).toISOString(),
+        // "dateModified": new Date(post.body?.date_created).toISOString(),
+        "description": post.description,
+        "articleBody": post.body,
+    }
+
+
     if (!post) {
         return <Error404 message='Error fetching posts' />
     }
 
     return (
         <PaddingContainer>
+            {/* Add JSON-LD to your page */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            {/* ... */}
             {/* container */}
             <div className='space-y-10'>
                 {!post ?
